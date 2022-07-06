@@ -160,7 +160,8 @@ class Log implements Arrayable, Jsonable, JsonSerializable
      */
     public function stats()
     {
-        return $this->entries->stats();
+        // return $this->entries->stats();
+        return array();
     }
 
     /**
