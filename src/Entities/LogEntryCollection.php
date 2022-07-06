@@ -82,10 +82,10 @@ class LogEntryCollection extends LazyCollection
     {
         $counters = $this->initStats();
 
-        foreach ($this->groupBy('level') as $level => $entries) {
-            $counters[$level] = $count = count($entries);
-            $counters['all'] += $count;
-        }
+        // foreach ($this->groupBy('level') as $level => $entries) {
+        //     $counters[$level] = $count = count($entries);
+        //     $counters['all'] += $count;
+        // }
 
         return $counters;
     }
