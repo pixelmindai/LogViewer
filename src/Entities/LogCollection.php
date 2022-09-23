@@ -34,18 +34,18 @@ class LogCollection extends LazyCollection
      *
      * @param  mixed  $source
      */
-    public function __construct($source = null)
+    public function construct($source = null)
     {
         $this->setFilesystem(app(FilesystemContract::class));
 
         if (is_null($source))
             $source = function () {
                 foreach($this->filesystem->dates(true) as $date => $path) {
-                    yield $date => Log::make($date, $path, $this->filesystem->read($date));
+                    yield $date => Log::make($date, $path, $this->filesystem->read($date), false);
                 }
             };
 
-        parent::__construct($source);
+        parent::construct($source);
     }
 
     /* -----------------------------------------------------------------

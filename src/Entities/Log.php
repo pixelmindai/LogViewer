@@ -45,12 +45,17 @@ class Log implements Arrayable, Jsonable, JsonSerializable
      * @param  string  $path
      * @param  string  $raw
      */
-    public function __construct($date, $path, $raw)
+    public function __construct($date, $path, $raw, $fullLoad = true)
     {
         $this->date    = $date;
         $this->path    = $path;
         $this->file    = new SplFileInfo($path);
-        $this->entries = LogEntryCollection::load($raw);
+
+        if($fullLoad) {
+            $this->entries = LogEntryCollection::load($raw);
+        } else {
+            $this->entries = '';
+        }
     }
 
     /* -----------------------------------------------------------------
@@ -122,9 +127,9 @@ class Log implements Arrayable, Jsonable, JsonSerializable
      *
      * @return self
      */
-    public static function make($date, $path, $raw)
+    public static function make($date, $path, $raw, $fullLoad = true)
     {
-        return new self($date, $path, $raw);
+        return new self($date, $path, $raw, $fullLoad);
     }
 
     /**
